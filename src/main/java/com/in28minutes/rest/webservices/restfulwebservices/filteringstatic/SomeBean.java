@@ -1,6 +1,5 @@
-package com.in28minutes.rest.webservices.restfulwebservices.filtering;
+package com.in28minutes.rest.webservices.restfulwebservices.filteringstatic;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
