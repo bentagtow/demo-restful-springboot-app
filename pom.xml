@@ -54,6 +54,22 @@
 
 
 
+<!--		hal expoerer dependency
+			url for this is just at localhost:8080/
+			visual representation of actuator
+			when your apps support HATEOS you can use halexporer to support apis
+			no additional coding needed just this dependency
+-->
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
+
+
+
+
+
 <!--		HATEOS dependency
 			stands for Hypermedia as the Engine of Application State
 			here we used it to add internationalization. created messages_fr.properties
@@ -79,6 +95,7 @@
 			properties of our application.
 			For apidocs: http://localhost:8080/v3/api-docs
 			For swaggerUi: http://localhost:8080/swagger-ui/index.html#/
+			no additional coding just this dependency
 			-->
 		<dependency>
 			<groupId>org.springdoc</groupId>

@@ -1,6 +1,5 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;

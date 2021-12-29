@@ -2,10 +2,6 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import com.in28minutes.rest.webservices.restfulwebservices.exception.InvalidUserException;
 import com.in28minutes.rest.webservices.restfulwebservices.exception.UserNotFoundException;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
-import org.hibernate.EntityMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -16,6 +12,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserResource {
