@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 public class UserResource {
 
+    //autowires in our service which contains the service methods
     @Autowired
     private UserDaoService service;
 
@@ -30,7 +31,8 @@ public class UserResource {
     }
 
     //retrieveUser using id as param
-    //if no user, return UserNotFoundException using custom class with @ResponseStatus annotation that designates the status
+    //if no user, return UserNotFoundException using custom class
+    //.. with @ResponseStatus annotation that designates the status
     @GetMapping("users/{id}")
     public EntityModel<User> retrieveUser(@PathVariable int id){
         User user = service.findOne(id);
@@ -39,6 +41,7 @@ public class UserResource {
         }
         EntityModel<User> model = EntityModel.of(user);
 
+        //this gives us a link with
         WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
 
         model.add(linkToUsers.withRel("all-users"));
@@ -48,16 +51,16 @@ public class UserResource {
     //post request for a new user:
     //  input: details of the user
     //  output: CREATED & return the created URI
-
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
         User savedUser = service.save(user);
+
+        //this is a validation method I added in to make sure that a name and bday are in there
         if(savedUser.getName() == null || savedUser.getBirthdate()==null){
             throw new InvalidUserException("name or birthday missing");
         }
 
-
-
+        //builds a specific uri for each user created at users/{id}
         URI location = ServletUriComponentsBuilder.
                 fromCurrentRequest().
                 path("/{id}").
@@ -71,10 +74,13 @@ public class UserResource {
 
     }
 
+    //deletes a user obvi. Using ID uri
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id){
         User user = service.deleteById(id);
         if (user == null){
+            //throws a custom exception if the user id is non-existent.
+            //Exceptions are found in java/exception folder
             throw new UserNotFoundException("id"  + id);
         }
     }

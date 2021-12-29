@@ -10,12 +10,15 @@ import java.util.List;
 
 public class User {
 
+    //positive is a validation
     @Positive
     private Integer id;
 
+    //size is validation
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
 
+    //past is validation (past date)
     @Past
     private Date birthdate;
 
@@ -54,6 +57,14 @@ public class User {
         this.birthdate = birthdate;
     }
 
+    public List<String> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<String> posts) {
+        this.posts = posts;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -63,12 +74,5 @@ public class User {
                 '}';
     }
 
-    public List<String> getPosts() {
-        return posts;
-    }
 
-
-    public void setPosts(List<String> posts) {
-        this.posts = posts;
-    }
 }

@@ -33,13 +33,16 @@ public class HelloWorldController {
     public HelloWorldBean helloWorldPathVariable(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello World, %s", name));
     }
+
+    //internationalization. So depending on the language passed in the header a diff output is given
+    //
     @GetMapping(path="/hello-world-internationalized")
     public String helloWorldInternationalized(
 //            @RequestHeader(name="Accept-Language", required = false) Locale locale
             ){
 
+        //the LocalContextHolder.getLocale thing lets us not have to pu tin teh @RequestHeader stuff above every time
         return messageSource.getMessage("good.morning.message", null, "Default Message!!", LocaleContextHolder.getLocale());
-//        return "Hello World";
     }
 
 

@@ -2,6 +2,9 @@ package com.in28minutes.rest.webservices.restfulwebservices.exception;
 
 import java.util.Date;
 
+
+//this class gives our exception response. So it is the info that will be given when exceptions are made.
+//generic class and then inside of CustomizedResponseEntityExceptionHandler is where you customize
 public class ExceptionResponse {
 
     private Date timestamp;
