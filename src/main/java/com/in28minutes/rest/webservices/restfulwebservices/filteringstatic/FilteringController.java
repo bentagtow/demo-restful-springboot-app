@@ -11,11 +11,12 @@ import java.util.List;
 public class FilteringController {
 
     @GetMapping("/filtering")
-    public SomeBean retrieveSomeBean(){
+    public SomeBean retrieveSomeBean() {
         return new SomeBean("value1", "value3213121", "value12");
     }
+
     @GetMapping("/filtering-list")
-    public List<SomeBean> retrieveSomeListOfBean(){
+    public List<SomeBean> retrieveSomeListOfBean() {
         return Arrays.asList(
                 new SomeBean("value1", "value3213121", "value12"),
                 new SomeBean("value143211", "val1242", "value112341234232")

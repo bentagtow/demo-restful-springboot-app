@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 //this is where you designate the HTTPStatus given when this error is thrown
 @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-public class InvalidUserException extends RuntimeException{
+public class InvalidUserException extends RuntimeException {
 
     public InvalidUserException(String message) {
         super(message);

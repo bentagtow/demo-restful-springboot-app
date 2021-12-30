@@ -25,7 +25,7 @@ public class UserResource {
 
     //retrieveAllUsers
     @GetMapping("/users")
-    public List<User> retrieveAllUsers(){
+    public List<User> retrieveAllUsers() {
         return service.findAll();
     }
 
@@ -33,9 +33,9 @@ public class UserResource {
     //if no user, return UserNotFoundException using custom class
     //.. with @ResponseStatus annotation that designates the status
     @GetMapping("users/{id}")
-    public EntityModel<User> retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id) {
         User user = service.findOne(id);
-        if(user == null){
+        if (user == null) {
             throw new UserNotFoundException("id-" + id);
         }
         EntityModel<User> model = EntityModel.of(user);
@@ -51,11 +51,11 @@ public class UserResource {
     //  input: details of the user
     //  output: CREATED & return the created URI
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
 
         //this is a validation method I added in to make sure that a name and bday are in there
-        if(savedUser.getName() == null || savedUser.getBirthdate()==null){
+        if (savedUser.getName() == null || savedUser.getBirthdate() == null) {
             throw new InvalidUserException("name or birthday missing");
         }
 
@@ -68,35 +68,34 @@ public class UserResource {
         return ResponseEntity.created(location).build();
 
 
-
         //return a status of CREATED as per REST protocols
 
     }
 
     //deletes a user obvi. Using ID uri
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable int id){
+    public void deleteUser(@PathVariable int id) {
         User user = service.deleteById(id);
-        if (user == null){
+        if (user == null) {
             //throws a custom exception if the user id is non-existent.
             //Exceptions are found in java/exception folder
-            throw new UserNotFoundException("id"  + id);
+            throw new UserNotFoundException("id" + id);
         }
     }
 
 
-    @GetMapping("/users/{id}/posts")
-    public List retrievePosts(@PathVariable int id){
-        User user = service.findOne(id);
-        return user.getPosts();
-
-    }
-
-    @PostMapping("/users/{id}/posts")
-    public String createUserPost(@PathVariable int id){
-        String post = service.savePost(id, "my post!");
-        return post;
-    }
-
+//    @GetMapping("/users/{id}/posts")
+//    public List retrievePosts(@PathVariable int id){
+//        User user = service.findOne(id);
+//        return user.getPosts();
+//
+//    }
+//
+//    @PostMapping("/users/{id}/posts")
+//    public String createUserPost(@PathVariable int id){
+//        String post = service.savePost(id, "my post!");
+//        return post;
+//    }
+//
 
 }

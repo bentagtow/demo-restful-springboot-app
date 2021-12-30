@@ -15,17 +15,17 @@ public class UserDaoService {
     private static int usersCount = 3;
 
     static {
-        ArrayList<String> postsOne = new ArrayList<>();
-        postsOne.add("user 1 posts!");
-        ArrayList<String> postsTwo = new ArrayList<>();
-        postsTwo.add("second user posts");
-        ArrayList<String> postsThree = new ArrayList<>();
-        postsThree.add("third user posts!");
+//        ArrayList<String> postsOne = new ArrayList<>();
+//        postsOne.add("user 1 posts!");
+//        ArrayList<String> postsTwo = new ArrayList<>();
+//        postsTwo.add("second user posts");
+//        ArrayList<String> postsThree = new ArrayList<>();
+//        postsThree.add("third user posts!");
 
         //adds seed users
-        users.add(new User(1, "Adam", new Date(), postsOne));
-        users.add(new User(2, "Eve", new Date(), postsTwo));
-        users.add(new User(3, "Ben", new Date(), postsThree));
+        users.add(new User(1, "Adam", new Date()));
+        users.add(new User(2, "Eve", new Date()));
+        users.add(new User(3, "Ben", new Date()));
     }
 
     //find all users
@@ -34,8 +34,8 @@ public class UserDaoService {
     }
 
     //saves new user by adding to users list. If no ID, assigns next int as ID.
-    public User save(User user){
-        if(user.getId()==null){
+    public User save(User user) {
+        if (user.getId() == null) {
             user.setId(++usersCount);
         }
 
@@ -56,26 +56,26 @@ public class UserDaoService {
     //Iterator allows us to find the user by ID and delete them. returns the deleted user.
     public User deleteById(int id) {
         Iterator<User> iterator = users.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             User user = iterator.next();
-                if (user.getId() == id) {
-                    iterator.remove();
-                    return user;
-                }
-
+            if (user.getId() == id) {
+                iterator.remove();
+                return user;
             }
+
+        }
         return null;
 
 
     }
-
-
-    public String savePost(int id, String post){
-        User user = findOne(id);
-        List<String> posts = user.getPosts();
-        posts.add(post);
-        user.setPosts(posts);
-        return null;
-    }
+//
+//
+//    public String savePost(int id, String post){
+//        User user = findOne(id);
+//        List<String> posts = user.getPosts();
+//        posts.add(post);
+//        user.setPosts(posts);
+//        return null;
+//    }
 
 }

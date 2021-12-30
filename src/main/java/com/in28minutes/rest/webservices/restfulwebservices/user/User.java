@@ -1,16 +1,24 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import com.in28minutes.rest.webservices.restfulwebservices.post.Post;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//this annotation makes this an entity managed by JPA
+@Entity
 public class User {
 
-    //positive is a validation
-    @Positive
+    //@Id makes this the primary key
+    //@GeneratedValue provides the specification for generation strategies of the primary key
+    @Id
+    @GeneratedValue
     private Integer id;
 
     //size is validation
@@ -21,15 +29,22 @@ public class User {
     @Past
     private Date birthdate;
 
-    private List<String> posts;
+    //user has one-to-many relationship with post (post has many-to-one wiht user)
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
-    public User(Integer id, String name, Date birthdate, ArrayList<String> posts) {
+
+    public User(Integer id, String name, Date birthdate) {
         super();
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
-        this.posts = posts;
+//        this.posts = posts;
 
+    }
+
+    public User() {
+        super();
     }
 
     public Integer getId() {
@@ -56,11 +71,20 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public List<String> getPosts() {
+//    public List<String> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<String> posts) {
+//        this.posts = posts;
+//    }
+
+
+    public List<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<String> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 

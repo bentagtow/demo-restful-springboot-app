@@ -1,7 +1,6 @@
 package com.in28minutes.rest.webservices.restfulwebservices.filteringdynamic;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 //This class is for DYNAMIC FILTERING

@@ -15,7 +15,7 @@ import java.util.List;
 public class DynamicFilteringController {
 
     //helper method for our mapping
-    public MappingJacksonValue mappingMethod(Object toMap){
+    public MappingJacksonValue mappingMethod(Object toMap) {
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("fields1", "fields2");
 
         //the filter below must be defined in the bean itself (see the class level annotation)
@@ -30,7 +30,7 @@ public class DynamicFilteringController {
 
     //onlysend field1, field2 here
     @GetMapping("/filtering-dynamic")
-    public MappingJacksonValue retrieveSomeBean(){
+    public MappingJacksonValue retrieveSomeBean() {
         DynamicFilteringSomeBean dynamicFilteringSomeBean = new DynamicFilteringSomeBean("dvalue1", "dvalue3213121", "dvalue12");
 
         return mappingMethod(dynamicFilteringSomeBean);
@@ -40,7 +40,7 @@ public class DynamicFilteringController {
 
     //onlysend field2, field3 here
     @GetMapping("/filtering-list-dynamic")
-    public MappingJacksonValue retrieveSomeListOfBean(){
+    public MappingJacksonValue retrieveSomeListOfBean() {
         List<DynamicFilteringSomeBean> dynamicFilteringSomeBeans = Arrays.asList(
                 new DynamicFilteringSomeBean("dvalue1", "dvalue3213121", "dvalue12"),
                 new DynamicFilteringSomeBean("dvalue143211", "dval1242", "dvalue112341234232")
